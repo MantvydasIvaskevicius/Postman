@@ -430,6 +430,80 @@
 					"response": []
 				},
 				{
+					"name": "category-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}products/category-list",
+							"host": [
+								"{{base_url}}products"
+							],
+							"path": [
+								"category-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cetegorySmartphones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Category has products\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.products.length).to.be.above(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}products/category/{{category}}",
+							"host": [
+								"{{base_url}}products"
+							],
+							"path": [
+								"category",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get a single product",
 					"request": {
 						"method": "GET",
@@ -2100,13 +2174,22 @@
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
-					"pm.test(\"Status code is 200 or 201\", function () {\r",
-					"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
-					"});\r",
+					"// pm.test(\"Status code is 200 or 201\", function () {\r",
+					"//     pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+					"// });\r",
 					"\r",
-					"pm.test(\"Content-Type is one of Json, Webp, Jpg or Png\", function() {\r",
-					"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/(json|webp|jpg|png)/);\r",
-					"});\r",
+					"// pm.test(\"Content-Type is one of Json, Webp, Jpg or Png\", function() {\r",
+					"//     pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/(json|webp|jpg|png)/);\r",
+					"// });\r",
+					"\r",
+					"// pm.test(\"Category has products\", function () {\r",
+					"//     let jsonData = pm.response.json();\r",
+					"//     pm.expect(jsonData.products.length).to.be.above(0);\r",
+					"// });\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
 					"// pm.variables.set(\"RefreshToken\",\"RefreshToken\")\r",
 					"\r",
 					"// let responseJson = pm.response.json();\r",

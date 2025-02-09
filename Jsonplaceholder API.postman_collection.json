@@ -282,6 +282,38 @@
 			"item": [
 				{
 					"name": "Getting a resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"name\",function(){\r",
+									"    response= pm.response.json();\r",
+									"    pm.expect(response[2].name).to.be.eql('odio adipisci rerum aut animi');\r",
+									"    \r",
+									"})\r",
+									" response= pm.response.json();\r",
+									"pm.test(\"kintamasis\",function(){\r",
+									"    pm.expect(environment.base_url).to.be.eql('https://dummyjson.com/')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
